@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="public/devchallenges.png">
+  <title>Todo App</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+    integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Raleway:wght@700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" type="module" defer></script>
+  <script src="tabs.js" type="module" defer></script>
+</head>
+
+<body>
+  <header>
+    <h1>#todo</h1>
+  </header>
+  <main>
+    <div class="tab-btns" role="tablist">
+      <button aria-selected="true" role="tab" tabindex="0" aria-controls="tab-all" class="btn"
+        data-num="20">All</button>
+      <button aria-selected="false" role="tab" tabindex="-1" aria-controls="tab-active" class="btn"
+        data-num="225">Active</button>
+      <button aria-selected="false" role="tab" tabindex="-1" aria-controls="tab-completed" class="btn btn-tab-completed"
+        data-num="461">Completed</button>
+      <div class="indicator"></div>
+    </div>
+    <div class="container">
+      <div role="tabpanel" class="tab tab-all" id="tab-all">
+        <form class="form-all">
+          <input type="text" class="input-all" placeholder="add details">
+          <button class="btn btn-submit">Add</button>
+        </form>
+        <ul class="todo-list todo-list--all" data-list="all">
+        </ul>
+      </div>
+      <div role="tabpanel" hidden class="tab tab-active" id="tab-active">
+        <form class="form-active">
+          <input type="text" class="input-active" placeholder="add details">
+          <button class="btn btn-submit">Add</button>
+        </form>
+        <ul class="todo-list todo-list--active" data-list="active">
+        </ul>
+      </div>
+      <div role="tabpanel" hidden class="tab tab-completed" id="tab-completed">
+        <ul class="todo-list todo-list--completed" data-list="completed">
+        </ul>
+        <button class="btn btn-delete-all"><i class="fa-solid fa-trash"></i> delete all</button>
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>
