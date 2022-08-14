@@ -39,7 +39,7 @@ function changeTabPanel(e) {
 
     const num = targetTab.getAttribute('data-num');
     indicator.style.left = `${num}px`
-
+    console.log()
 
     document.querySelector('[aria-selected="true"]').setAttribute("aria-selected", false);
     targetTab.setAttribute('aria-selected', true);

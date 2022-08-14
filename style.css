@@ -133,12 +133,15 @@ input[type=checkbox]:checked+label {
   color: var(--clr-primary-800);
 }
 
+
 input[type=text]:focus {
   outline: 2px solid var(--clr-accent-400);
 }
 
 body {
   font-family: var(--ff-primary);
+  display: flex;
+  flex-direction: column;
 }
 
 header {
@@ -154,8 +157,9 @@ h1 {
 }
 
 main {
-  max-width: 600px;
+  width: min(90%, 500px);
   margin-inline: auto;
+
 }
 
 .tab-btns {
@@ -171,15 +175,29 @@ main {
 }
 
 .indicator {
-  position: absolute;
-  left: 20px;
-  bottom: 0;
-  background-color: var(--clr-accent-400);
-  width: 90px;
-  height: 4px;
-  border-radius: 4px 4px 0 0;
-  transition: all 0.3s ease-in-out;
+  display: none;
 }
+
+@media(min-width: 600px) {
+  main {
+    min-width: 600px;
+  }
+
+  .indicator {
+    display: block;
+    position: absolute;
+    left: 20px;
+    bottom: 0;
+    background-color: var(--clr-accent-400);
+    width: 90px;
+    height: 4px;
+    border-radius: 4px 4px 0 0;
+    transition: all 0.3s ease-in-out;
+  }
+
+
+}
+
 
 form {
   display: flex;
@@ -255,9 +273,22 @@ li {
 
 .btn-delete {
   cursor: pointer;
-  color: var(--clr-primary-500)
+  color: var(--clr-primary-500);
 }
 
 .btn-delete:hover {
   color: var(--clr-primary-900);
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  color: var(--clr-primary-600);
+}
+
+footer a:first-child {
+  font-weight: 700;
+  text-decoration: underline;
 }
