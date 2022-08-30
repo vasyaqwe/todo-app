@@ -2,12 +2,6 @@ const indicator = document.querySelector('.indicator');
 const tabList = document.querySelector('[role="tablist"]');
 const tabs = tabList.querySelectorAll('[role="tab"]');
 
-tabs[0].addEventListener('click', () => {
-    setTimeout(() => {
-        location.reload()
-    }, 500);
-})
-
 tabs.forEach(tab => {
     tab.addEventListener('click', changeTabPanel);
 });
@@ -39,7 +33,6 @@ function changeTabPanel(e) {
 
     const num = targetTab.getAttribute('data-num');
     indicator.style.left = `${num}px`
-    console.log()
 
     document.querySelector('[aria-selected="true"]').setAttribute("aria-selected", false);
     targetTab.setAttribute('aria-selected', true);
