@@ -33,7 +33,7 @@ function updateHtml(todos, todoList) {
         <li>
             <input type="checkbox" id="checkbox-${listType}${i + 1}" ${isCompletedList ? 'checked disabled'
             : ''}>
-            <label for="checkbox-${listType}${i + 1}">${todo} ${isCompletedList && todos.completed.length > 0 ? `<button class="btn btn-delete"><i
+            <label for="checkbox-${listType}${i + 1}">${todo} ${isCompletedList ? `<button class="btn btn-delete"><i
                   class="fa-solid fa-trash"></i></button>` : ''}</label>
         </li>
         `).join('');
