@@ -242,6 +242,11 @@ input[type="text"] {
   border-radius: 4px;
   font-weight: 600;
   align-self: flex-end;
+  display: none;
+}
+
+.btn-delete-all[data-visible=true] {
+  display: block;
 }
 
 .btn-delete-all:hover {

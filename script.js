@@ -26,19 +26,27 @@ function submitForm(e) {
 }
 
 function updateHtml(todos, todoList) {
-    const isCompletedList = todoList.dataset.list === 'completed' ? true : false;
+    const isCompletedList = todoList.dataset.list === 'completed' && true;
     const listType = todoList.getAttribute('data-list');
 
     todoList.innerHTML = todos.map((todo, i) => `
         <li>
-            <input type="checkbox" id="checkbox-${listType}${i + 1}" ${isCompletedList ? 'checked disabled'
-            : ''}>
+            <input type="checkbox" id="checkbox-${listType}${i + 1}" ${isCompletedList && 'checked disabled'}>
             <label for="checkbox-${listType}${i + 1}">${todo} ${isCompletedList ? `<button class="btn btn-delete"><i
                   class="fa-solid fa-trash"></i></button>` : ''}</label>
         </li>
         `).join('');
 
     if (isCompletedList) {
+        if (todos.length === 0) {
+            deleteAllBtn.setAttribute("data-visible", false);
+            todoList.innerHTML = `
+        <p style="opacity: 0.7;">Nothing here...</p>
+    `
+        } else {
+            deleteAllBtn.setAttribute("data-visible", true);
+        }
+
         todoListAll.querySelectorAll('input').forEach(input => {
             if (todos.includes(input.nextElementSibling.innerText)) {
                 input.checked = true;
@@ -68,7 +76,7 @@ function modifyTodosAccordingToCheckboxes(e) {
         todos.completed = todos.completed.filter(todo => todo !== todoText);
         todos.active.push(todos.all.filter(todo => todo === todoText).join(''));
     }
-    localStorage.setItem("todos", JSON.stringify(todos));
+    renderTodos()
 }
 function deleteTodo(e) {
     const todoText = e.target.parentElement.parentElement.innerText;
@@ -90,6 +98,7 @@ formActive.addEventListener('submit', (e) => {
     e.preventDefault();
     submitForm(e);
 })
+
 
 const tabs = document.querySelectorAll('[role="tab"]');
 tabs[0].addEventListener('click', () => {
