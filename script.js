@@ -12,6 +12,15 @@ if (todos.all.length >= 1) {
     renderTodos();
 }
 
+formAll.addEventListener('submit', (e) => {
+    e.preventDefault();
+    submitForm(e);
+})
+formActive.addEventListener('submit', (e) => {
+    e.preventDefault();
+    submitForm(e);
+})
+
 function submitForm(e) {
     const todoText = e.target.firstElementChild.value.trim();
     if (todoText) {
@@ -21,7 +30,7 @@ function submitForm(e) {
             renderTodos();
         }
         document.querySelectorAll('input[type=checkbox]')
-            .forEach(checkbox => checkbox.addEventListener('change', modifyTodosAccordingToCheckboxes));
+            .forEach(checkbox => checkbox.addEventListener('change', modifyTodosArray));
     };
 }
 
@@ -40,17 +49,13 @@ function updateHtml(todos, todoList) {
     if (isCompletedList) {
         if (todos.length === 0) {
             deleteAllBtn.setAttribute("data-visible", false);
-            todoList.innerHTML = `
-        <p style="opacity: 0.7;">Nothing here...</p>
-    `
+            todoList.innerHTML = `<p style="opacity: 0.7;">Nothing here...</p>`
         } else {
             deleteAllBtn.setAttribute("data-visible", true);
         }
 
         todoListAll.querySelectorAll('input').forEach(input => {
-            if (todos.includes(input.nextElementSibling.innerText)) {
-                input.checked = true;
-            };
+            todos.includes(input.nextElementSibling.innerText) ? input.checked = true : input
         });
     };
 
@@ -58,7 +63,7 @@ function updateHtml(todos, todoList) {
         .forEach(btn => btn.addEventListener('click', deleteTodo));
 
     document.querySelectorAll('input[type=checkbox]')
-        .forEach(checkbox => checkbox.addEventListener('change', modifyTodosAccordingToCheckboxes));
+        .forEach(checkbox => checkbox.addEventListener('change', modifyTodosArray));
 }
 function renderTodos() {
     localStorage.setItem("todos", JSON.stringify(todos));
@@ -67,7 +72,7 @@ function renderTodos() {
     updateHtml(todos.completed, todoListCompleted);
 }
 
-function modifyTodosAccordingToCheckboxes(e) {
+function modifyTodosArray(e) {
     const todoText = e.target.nextElementSibling.innerText.trim();
     if (e.target.checked) {
         todos.completed.push(todoText);
@@ -76,8 +81,9 @@ function modifyTodosAccordingToCheckboxes(e) {
         todos.completed = todos.completed.filter(todo => todo !== todoText);
         todos.active.push(todos.all.filter(todo => todo === todoText).join(''));
     }
-    renderTodos()
+    renderTodos();
 }
+
 function deleteTodo(e) {
     const todoText = e.target.parentElement.parentElement.innerText;
     todos.completed = todos.completed.filter(todo => todo !== todoText);
@@ -88,15 +94,6 @@ deleteAllBtn.addEventListener('click', () => {
     todos.all = [...todos.active];
     todos.completed = [];
     renderTodos();
-})
-
-formAll.addEventListener('submit', (e) => {
-    e.preventDefault();
-    submitForm(e);
-})
-formActive.addEventListener('submit', (e) => {
-    e.preventDefault();
-    submitForm(e);
 })
 
 
