@@ -162,6 +162,7 @@ main {
 
 }
 
+
 .tab-btns {
   margin: 2rem 0;
   padding-bottom: 1em;
@@ -169,10 +170,11 @@ main {
   display: flex;
   justify-content: space-around;
   gap: 4rem;
-  font-weight: 600;
   font-size: var(--fs-300);
   position: relative;
 }
+
+
 
 .indicator {
   display: none;
@@ -215,6 +217,18 @@ input[type="text"] {
   background: none;
   border: 0;
   transition: 0.25s ease;
+}
+
+@media(max-width: 600px) {
+  .btn-tab {
+    font-weight: 600;
+    transition: none;
+  }
+
+  .btn-tab[aria-selected="true"] {
+    font-weight: 700;
+    border-bottom: 2px solid var(--clr-accent-400);
+  }
 }
 
 .btn-submit {
